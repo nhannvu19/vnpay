@@ -31,7 +31,7 @@ module Vnpay
     def calculated_secure_hash
       REJECTED_PARAMS.each { |key| params.delete(key) }
       data = params.sort.map { |k, v| "#{k}=#{v}" }.join('&')
-      Digest::MD5.hexdigest(Vnpay.configuration.secret_key + data)
+      Digest::MD5.hexdigest(Vnpay::Config.configuration.secret_key + data)
     end
 
     def normalize_params
