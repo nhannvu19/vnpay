@@ -41,7 +41,7 @@ module Vnpay
     end
 
     def config
-      @config ||= Vnpay::Config.configuration
+      @config ||= Vnpay.configuration
     end
 
     def url_encode(string)
