@@ -1,6 +1,14 @@
-require 'lib/vnpay/url'
-require 'lib/vnpay/verify'
 require 'order_info'
+require 'vnpay/url'
+require 'vnpay/verify'
+
+module Vnpay
+  if defined?(Rails)
+    require 'vnpay/engine'
+  else
+    require 'vnpay'
+  end
+end
 
 class Vnpay
   def self.configuration
