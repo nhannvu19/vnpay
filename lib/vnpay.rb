@@ -1,3 +1,7 @@
+require 'lib/vnpay/url'
+require 'lib/vnpay/verify'
+require 'order_info'
+
 class Vnpay
   def self.configuration
     @configuration ||= OpenStruct.new
