@@ -1,4 +1,4 @@
-require 'order_info'
+require 'vnpay/order_info'
 require 'vnpay/config'
 require 'vnpay/verify'
 require 'vnpay/url'
