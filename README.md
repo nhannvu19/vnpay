@@ -1,2 +1,2 @@
-# ruby-vnpay
+# vnpay
 Ruby gem for VNPay integration
