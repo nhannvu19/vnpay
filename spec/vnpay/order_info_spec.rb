@@ -1,6 +1,41 @@
 require 'spec_helper'
 
 describe Vnpay::OrderInfo do
+  let(:attributes) do
+    {
+      amount: 20_000_000,
+      created_at: Time.at(1364046539),
+      order_type: 'BILL_PAYMENT',
+      payment_ref: 'TXN-110231261',
+      description: 'This is a bill'
+    }
+  end
+
+  describe '#initialize' do
+    it 'assign attributes' do
+      order_info = described_class.new(attributes)
+
+      expect(order_info.amount).to eq(20_000_000)
+      expect(order_info.created_at).to eq '20130323204859'
+      expect(order_info.order_type).to eq 'BILL_PAYMENT'
+      expect(order_info.payment_ref).to eq 'TXN-110231261'
+      expect(order_info.description).to eq 'This is a bill'
+    end
+  end
+
+  describe '#assign_attributes' do
+    it 'assign attributes' do
+      order_info = described_class.new
+      order_info.assign_attributes(attributes)
+
+      expect(order_info.amount).to eq(20_000_000)
+      expect(order_info.created_at).to eq '20130323204859'
+      expect(order_info.order_type).to eq 'BILL_PAYMENT'
+      expect(order_info.payment_ref).to eq 'TXN-110231261'
+      expect(order_info.description).to eq 'This is a bill'
+    end
+  end
+
   describe '#created_at' do
     it 'transform value' do
       order_info = described_class.new
@@ -13,7 +48,7 @@ describe Vnpay::OrderInfo do
   describe '#valid?' do
     let(:order_info) {
       order_info = described_class.new
-      order_info.amount = 25_000_000
+      order_info.amount = 20_000_000
       order_info.created_at = Time.now
       order_info.order_type = 'BILL_PAYMENT'
       order_info.payment_ref = 'TXN-110231261'

@@ -39,8 +39,34 @@ Vnpay::Config.configure do |config|
 end
 ```
 
-### How to use
+How to use
+------------
+
+### Generate payment URL
+
+To generate VNPAY payment URL, you have to use specific model to transform necessary information. Things we need to have are:
+- Order Type: refer VNPAY documentation [here](https://sandbox.vnpayment.vn/apis/docs/loai-hang-hoa/)
+- Payment Ref: to know the order that payment URL belongs to so you'll be able to confirm payment correctly.
+- Amount: Order amount in Vietnam Dong.
+- Description: Order description
+- Created at: When the order is created
+
+```ruby
+order = Vnpay::OrderInfo.new(
+  amount: 20_000_000,
+  created_at: Time.at(1364046539),
+  order_type: 'BILL_PAYMENT',
+  payment_ref: 'TXN-110231261',
+  description: 'This is a bill'
+)
+```
+
+Once you have corresponding order info, simply use service to generate payment URL. The second param is user's IP address and the third one is your callback URL which system will automatically redirect to after user complete the payment
+
+```ruby
+payment_url = Vnpay::URL.new(order, '127.0.0.1', 'https://mydomain.com/vnpay/payment_complete')
+```
+
+
 
 ...
-
-
